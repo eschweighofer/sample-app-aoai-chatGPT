@@ -83,7 +83,7 @@ const Layout = () => {
               <h1 className={styles.headerTitle}>{ui?.title}</h1>
             </Link>
             <Link to="https://www.dxc.com" className={styles.headerTitleContainer}>
-              <h2 className={styles.headerTitle}>TEST</h1>
+              <h2 className={styles.headerTitle}>TEST</h2>
             </Link>
           </Stack>
           <Stack horizontal tokens={{ childrenGap: 4 }} className={styles.shareButtonContainer}>

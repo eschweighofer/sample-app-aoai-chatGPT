@@ -100,6 +100,21 @@
   color: #242424;
 }
 
+.helpContainer {
+  width: 300px;
+  text-align: center;
+}
+
+.helpLinkContainer {
+  width: 50%;
+  float: left;
+}
+
+.helpLinkContainer a {
+  color: #616161;
+  text-decoration: none;
+}
+
 @media (max-width: 480px) {
   .headerTitleContainer {
     margin-left: 4px;

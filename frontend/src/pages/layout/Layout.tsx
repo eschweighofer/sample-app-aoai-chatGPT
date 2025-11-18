@@ -85,7 +85,7 @@ const Layout = () => {
           </Stack>
           <Stack horizontal verticalAlign="center" horizontalAlign="space-between" className={styles.helpContainer}>
             <Stack horizontal verticalAlign="center" className={styles.helpLinkContainer}>
-                <a href="https://confluence.dxc.com/x/Db0kKw" target="_blank">P4S TRG for AI</a>
+                <a href="https://confluence.dxc.com/x/Db0kKw" target="_blank">User Guide</a>
             </Stack>
             <Stack horizontal verticalAlign="center" className={styles.helpLinkContainer}>
                 <a href="https://forms.office.com/Pages/ResponsePage.aspx?id=cTXzkw9Vz0Own80zEzjQhnQbaNveWrBAqEQ7MvihmWhUMTZSWDJPVFRZOUY3T1VMSTJDU1NXSkVGWS4u" target="_blank">Feedback Form</a>

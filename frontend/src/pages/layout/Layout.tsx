@@ -88,7 +88,7 @@ const Layout = () => {
                 <a href="https://confluence.dxc.com/x/yqKNIQ" target="_blank">P4S TRG for AI</a>
             </Stack>
             <Stack horizontal verticalAlign="center" className={styles.helpLinkContainer}>
-                <a href="https://forms.office.com/Pages/ResponsePage.aspx?id=cTXzkw9Vz0Own80zEzjQhnQbaNveWrBAqEQ7MvihmWhUMTZSWDJPVFRZOUY3T1VMSTJDU1NXSkVGWS4u" target="_blank"></a>
+                <a href="https://forms.office.com/Pages/ResponsePage.aspx?id=cTXzkw9Vz0Own80zEzjQhnQbaNveWrBAqEQ7MvihmWhUMTZSWDJPVFRZOUY3T1VMSTJDU1NXSkVGWS4u" target="_blank">Feedback Form</a>
             </Stack>
           </Stack>
           <Stack horizontal tokens={{ childrenGap: 4 }} className={styles.shareButtonContainer}>

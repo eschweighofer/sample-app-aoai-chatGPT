@@ -82,9 +82,14 @@ const Layout = () => {
             <Link to="/" className={styles.headerTitleContainer}>
               <h1 className={styles.headerTitle}>{ui?.title}</h1>
             </Link>
-            <Link to="https://www.dxc.com" className={styles.headerTitleContainer}>
-              <h2 className={styles.headerTitle}>TEST LINK</h2>
-            </Link>
+          </Stack>
+          <Stack horizontal verticalAlign="center" horizontalAlign="space-between" className={styles.helpContainer}>
+            <Stack horizontal verticalAlign="center" className={styles.helpLinkContainer}>
+                <a href="https://confluence.dxc.com/x/yqKNIQ" target="_blank">P4S TRG for AI</a>
+            </Stack>
+            <Stack horizontal verticalAlign="center" className={styles.helpLinkContainer}>
+                <a href="https://forms.office.com/Pages/ResponsePage.aspx?id=cTXzkw9Vz0Own80zEzjQhnQbaNveWrBAqEQ7MvihmWhUMTZSWDJPVFRZOUY3T1VMSTJDU1NXSkVGWS4u" target="_blank"></a>
+            </Stack>
           </Stack>
           <Stack horizontal tokens={{ childrenGap: 4 }} className={styles.shareButtonContainer}>
             {appStateContext?.state.isCosmosDBAvailable?.status !== CosmosDBStatus.NotConfigured && ui?.show_chat_history_button !== false && (

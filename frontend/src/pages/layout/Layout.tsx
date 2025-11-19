@@ -90,6 +90,9 @@ const Layout = () => {
             <Stack horizontal verticalAlign="center" className={styles.helpLinkContainer}>
                 <a href="https://forms.office.com/Pages/ResponsePage.aspx?id=cTXzkw9Vz0Own80zEzjQhnQbaNveWrBAqEQ7MvihmWhUMTZSWDJPVFRZOUY3T1VMSTJDU1NXSkVGWS4u" target="_blank">Feedback Form</a>
             </Stack>
+            <Stack horizontal verticalAlign="center" className={styles.helpLinkContainer}>
+                <a href="https://confluence.dxc.com/x/8MIkKw" target="_blank">Release Notes</a>
+            </Stack>
           </Stack>
           <Stack horizontal tokens={{ childrenGap: 4 }} className={styles.shareButtonContainer}>
             {appStateContext?.state.isCosmosDBAvailable?.status !== CosmosDBStatus.NotConfigured && ui?.show_chat_history_button !== false && (

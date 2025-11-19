@@ -24,7 +24,7 @@
   margin: 11px;
   white-space: normal;
   word-wrap: break-word;
-  max-width: 800px;
+  max-width: 1200px;
   overflow-x: auto;
 }
 
@@ -184,7 +184,7 @@ sup {
   line-height: 10px;
 }
 
-@media (max-width: 480px) {
+@media (max-width: 640px) {
   .answerFooter {
     flex-direction: column-reverse;
   }

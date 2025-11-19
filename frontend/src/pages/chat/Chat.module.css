@@ -68,7 +68,7 @@
 
 .chatMessageStream {
   flex-grow: 1;
-  max-width: 1028px;
+  max-width: 1400px;
   width: 100%;
   overflow-y: auto;
   padding-left: 24px;
@@ -121,7 +121,7 @@
   flex: none;
   order: 0;
   flex-grow: 0;
-  max-width: 800px;
+  max-width: 1200px;
   margin-bottom: 12px;
 }
 
@@ -145,7 +145,7 @@
   padding-left: 24px;
   padding-right: 24px;
   width: calc(100% - 100px);
-  max-width: 1028px;
+  max-width: 1440px;
   margin-bottom: 50px;
   margin-top: 8px;
 }
@@ -370,7 +370,7 @@ a {
   border-radius: 4px;
 }
 
-@media (max-width: 480px) {
+@media (max-width: 640px) {
   .chatInput {
     width: 90%;
     max-width: 90%;

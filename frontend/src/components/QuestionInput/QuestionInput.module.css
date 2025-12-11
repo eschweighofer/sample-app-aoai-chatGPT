@@ -46,7 +46,7 @@
   height: 4px;
   left: 0%;
   bottom: 0%;
-  background: #5F249F;
+  background: linear-gradient(89.98deg,#4996ff,#ff7f52 60%,#ffc983);
   border-bottom-left-radius: 8px;
   border-bottom-right-radius: 8px;
 }

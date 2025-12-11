@@ -879,7 +879,7 @@ const Chat = () => {
                       },
                       root: {
                         color: '#FFFFFF',
-                        background: '#5F249F'
+                        background: 'linear-gradient(148.38deg,#4996ff,#ff7f52 30%,#ffc983)'
                       },
                       rootDisabled: {
                         background: '#F0F0F0'
@@ -903,7 +903,7 @@ const Chat = () => {
                     },
                     root: {
                       color: '#FFFFFF',
-                      background: '#5F249F'
+                      background: 'linear-gradient(148.38deg,#4996ff,#ff7f52 30%,#ffc983)'
                     },
                     rootDisabled: {
                       background: '#F0F0F0'

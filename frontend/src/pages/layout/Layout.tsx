@@ -52,7 +52,7 @@ const Layout = () => {
     }
   }, [copyClicked])
 
-  useEffect(() => { }, [appStateContext?.state.isCosmosDBAvailable.status])
+  useEffect(() => {}, [appStateContext?.state.isCosmosDBAvailable.status])
 
   useEffect(() => {
     const handleResize = () => {
@@ -85,22 +85,31 @@ const Layout = () => {
           </Stack>
           <Stack horizontal verticalAlign="center" horizontalAlign="space-between" className={styles.helpContainer}>
             <Stack horizontal verticalAlign="center" className={styles.helpLinkContainer}>
-                <a href="https://confluence.dxc.com/x/Db0kKw" target="_blank">User Guide</a>
+              <a href="https://confluence.dxc.com/x/Db0kKw" target="_blank">
+                User Guide
+              </a>
             </Stack>
             <Stack horizontal verticalAlign="center" className={styles.helpLinkContainer}>
-                <a href="https://forms.office.com/Pages/ResponsePage.aspx?id=cTXzkw9Vz0Own80zEzjQhnQbaNveWrBAqEQ7MvihmWhUMTZSWDJPVFRZOUY3T1VMSTJDU1NXSkVGWS4u" target="_blank">Feedback Form</a>
+              <a
+                href="https://forms.office.com/Pages/ResponsePage.aspx?id=cTXzkw9Vz0Own80zEzjQhnQbaNveWrBAqEQ7MvihmWhUMTZSWDJPVFRZOUY3T1VMSTJDU1NXSkVGWS4u"
+                target="_blank">
+                Feedback Form
+              </a>
             </Stack>
             <Stack horizontal verticalAlign="center" className={styles.helpLinkContainer}>
-                <a href="https://confluence.dxc.com/x/8MIkKw" target="_blank">Release Notes</a>
+              <a href="https://confluence.dxc.com/x/8MIkKw" target="_blank">
+                Release Notes
+              </a>
             </Stack>
           </Stack>
           <Stack horizontal tokens={{ childrenGap: 4 }} className={styles.shareButtonContainer}>
-            {appStateContext?.state.isCosmosDBAvailable?.status !== CosmosDBStatus.NotConfigured && ui?.show_chat_history_button !== false && (
-              <HistoryButton
-                onClick={handleHistoryClick}
-                text={appStateContext?.state?.isChatHistoryOpen ? hideHistoryLabel : showHistoryLabel}
-              />
-            )}
+            {appStateContext?.state.isCosmosDBAvailable?.status !== CosmosDBStatus.NotConfigured &&
+              ui?.show_chat_history_button !== false && (
+                <HistoryButton
+                  onClick={handleHistoryClick}
+                  text={appStateContext?.state?.isChatHistoryOpen ? hideHistoryLabel : showHistoryLabel}
+                />
+              )}
             {ui?.show_share_button && <ShareButton onClick={handleShareClick} text={shareLabel} />}
           </Stack>
         </Stack>

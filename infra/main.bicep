@@ -9,9 +9,11 @@ param environmentName string
 @description('Primary location for all resources')
 param location string
 
+@description('Resource Group for all resources')
+param resourceGroupName string
+
 param appServicePlanName string = ''
 param backendServiceName string = ''
-param resourceGroupName string = ''
 
 param searchServiceName string = ''
 param searchServiceResourceGroupName string = ''
@@ -31,8 +33,8 @@ param openAiResourceName string = ''
 param openAiResourceGroupName string = ''
 param openAiResourceGroupLocation string = location
 param openAiSkuName string = ''
-param openAIModel string = 'turbo16k'
-param openAIModelName string = 'gpt-35-turbo-16k'
+param openAIModel string = 'gpt-4.1'
+param openAIModelName string = 'gpt-4.1'
 param openAITemperature int = 0
 param openAITopP int = 1
 param openAIMaxTokens int = 1000
@@ -64,10 +66,8 @@ var resourceToken = toLower(uniqueString(subscription().id, environmentName, loc
 var tags = { 'azd-env-name': environmentName }
 
 // Organize resources in a resource group
-resource resourceGroup 'Microsoft.Resources/resourceGroups@2021-04-01' = {
+resource resourceGroup 'Microsoft.Resources/resourceGroups@2021-04-01' existing = {
   name: !empty(resourceGroupName) ? resourceGroupName : '${abbrs.resourcesResourceGroups}${environmentName}'
-  location: location
-  tags: tags
 }
 
 resource openAiResourceGroup 'Microsoft.Resources/resourceGroups@2021-04-01' existing = if (!empty(openAiResourceGroupName)) {
@@ -158,7 +158,7 @@ module openAi 'core/ai/cognitiveservices.bicep' = {
         model: {
           format: 'OpenAI'
           name: openAIModelName
-          version: '0613'
+          version: '2025-04-14'
         }
         capacity: 30
       }

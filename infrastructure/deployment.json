@@ -140,13 +140,6 @@
                 "description": "Azure OpenAI Model Deployment Name"
             }
         },
-        "AzureOpenAIModelName": {
-            "type": "string",
-            "defaultValue": "gpt-35-turbo",
-            "metadata": {
-                "description": "Azure OpenAI Model Name"
-            }
-        },
         "AzureOpenAIKey": {
             "type": "securestring",
             "metadata": {
@@ -451,10 +444,6 @@
                         {
                             "name": "AZURE_OPENAI_KEY",
                             "value": "[parameters('AzureOpenAIKey')]"
-                        },
-                        {
-                            "name": "AZURE_OPENAI_MODEL_NAME",
-                            "value": "[parameters('AzureOpenAIModelName')]"
                         },
                         {
                             "name": "AZURE_OPENAI_TEMPERATURE",

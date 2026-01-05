@@ -1,9 +1,4 @@
-import React, {
-  createContext,
-  ReactNode,
-  useEffect,
-  useReducer
-} from 'react'
+import React, { createContext, ReactNode, useEffect, useReducer } from 'react'
 
 import {
   ChatHistoryLoadingState,
@@ -28,7 +23,7 @@ export interface AppState {
   currentChat: Conversation | null
   frontendSettings: FrontendSettings | null
   feedbackState: { [answerId: string]: Feedback.Neutral | Feedback.Positive | Feedback.Negative }
-  isLoading: boolean;
+  isLoading: boolean
   answerExecResult: { [answerId: string]: [] }
 }
 
@@ -46,11 +41,11 @@ export type Action =
   | { type: 'FETCH_CHAT_HISTORY'; payload: Conversation[] | null }
   | { type: 'FETCH_FRONTEND_SETTINGS'; payload: FrontendSettings | null }
   | {
-    type: 'SET_FEEDBACK_STATE'
-    payload: { answerId: string; feedback: Feedback.Positive | Feedback.Negative | Feedback.Neutral }
-  }
+      type: 'SET_FEEDBACK_STATE'
+      payload: { answerId: string; feedback: Feedback.Positive | Feedback.Negative | Feedback.Neutral }
+    }
   | { type: 'GET_FEEDBACK_STATE'; payload: string }
-  | { type: 'SET_ANSWER_EXEC_RESULT'; payload: { answerId: string, exec_result: [] } }
+  | { type: 'SET_ANSWER_EXEC_RESULT'; payload: { answerId: string; exec_result: [] } }
 
 const initialState: AppState = {
   isChatHistoryOpen: false,
@@ -65,14 +60,14 @@ const initialState: AppState = {
   frontendSettings: null,
   feedbackState: {},
   isLoading: true,
-  answerExecResult: {},
+  answerExecResult: {}
 }
 
 export const AppStateContext = createContext<
   | {
-    state: AppState
-    dispatch: React.Dispatch<Action>
-  }
+      state: AppState
+      dispatch: React.Dispatch<Action>
+    }
   | undefined
 >(undefined)
 

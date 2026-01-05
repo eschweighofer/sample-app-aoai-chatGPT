@@ -22,6 +22,12 @@ fi
 cd ..
 . ./scripts/loadenv.sh
 
+echo 'Creating Python virtual environment ".venv" in root'
+python3 -m venv .venv
+
+echo 'Installing dependencies from "requirements-dev.txt" into virtual environment'
+./.venv/bin/python -m pip install -r requirements-dev.txt
+
 echo ""
 echo "Starting backend"
 echo ""

@@ -6,7 +6,10 @@ export async function conversationApi(options: ConversationRequest, abortSignal:
   const response = await fetch('/conversation', {
     method: 'POST',
     headers: {
-      'Content-Type': 'application/json'
+      'Content-Type': 'application/json',
+      'X-AI-Level': (typeof window !== 'undefined' && window.localStorage
+        ? localStorage.getItem('X-AI-Level') || 'L1'
+        : 'L1')
     },
     body: JSON.stringify({
       messages: options.messages
@@ -131,7 +134,10 @@ export const historyGenerate = async (
   const response = await fetch('/history/generate', {
     method: 'POST',
     headers: {
-      'Content-Type': 'application/json'
+      'Content-Type': 'application/json',
+      'X-AI-Level': (typeof window !== 'undefined' && window.localStorage
+        ? localStorage.getItem('X-AI-Level') || 'L1'
+        : 'L1')
     },
     body: body,
     signal: abortSignal

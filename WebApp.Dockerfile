@@ -12,7 +12,7 @@ ENV NODE_ENV=$NODE_ENV
 RUN echo "NODE_ENV=$NODE_ENV"
 RUN NODE_OPTIONS=--max_old_space_size=8192 npm run build
   
-FROM python:3.11-alpine 
+FROM python:3.11-alpine AS backend
 
 ARG DEV="-dev"
 RUN echo "DEV=$DEV"

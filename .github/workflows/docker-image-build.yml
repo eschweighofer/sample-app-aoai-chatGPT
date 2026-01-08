@@ -1,19 +1,21 @@
-name: Docker Image Build
+name: Test Docker Image Build
 
 on:
   pull_request:
     branches:
     - main
+  workflow_dispatch:
+
+env:
+  DEV: ${{ ((github.event.pull_request.base.ref != '' && format('refs/heads/{0}', github.event.pull_request.base.ref) || github.event.inputs.branch)) != 'refs/heads/main' && '-dev' || '' }}
 
 jobs:
-
   build:
-
     runs-on: ubuntu-latest
-
     steps:
     - uses: actions/checkout@v3
     - name: Build the Docker image
-      run:         
-        docker build . --file WebApp.Dockerfile --tag eschweighofer/sample-app-aoai-chatgpt:$(date +'%Y-%m-%d')_$GITHUB_RUN_NUMBER
-      
+      env:
+        NODE_ENV: ${{ env.DEV == '' && 'production' || 'development' }}
+      run:    
+        docker build . --file WebApp.Dockerfile --build-arg DEV=$DEV --tag eschweighofer/sample-app-aoai-chatgpt:$(date +'%Y-%m-%d')_$GITHUB_RUN_NUMBER$DEV

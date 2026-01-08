@@ -7,7 +7,8 @@ USER node
 RUN npm ci
 COPY --chown=node:node ./frontend/ ./frontend  
 WORKDIR /home/node/app/frontend
-ENV NODE_ENV=development
+ARG NODE_ENV=development
+ENV NODE_ENV=$NODE_ENV
 RUN echo "NODE_ENV=$NODE_ENV"
 RUN NODE_OPTIONS=--max_old_space_size=8192 npm run build
   

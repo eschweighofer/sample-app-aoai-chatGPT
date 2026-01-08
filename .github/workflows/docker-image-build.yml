@@ -17,5 +17,6 @@ jobs:
     - name: Build the Docker image
       env:
         NODE_ENV: ${{ env.DEV == '' && 'production' || 'development' }}
-      run:    
+      run:
+        echo "DEV:$DEV, NODE_ENV:$NODE_ENV";
         docker build . --file WebApp.Dockerfile --build-arg DEV=$DEV --tag eschweighofer/sample-app-aoai-chatgpt:$(date +'%Y-%m-%d')_$GITHUB_RUN_NUMBER$DEV

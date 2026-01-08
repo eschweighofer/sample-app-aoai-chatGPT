@@ -7,7 +7,7 @@ on:
   workflow_dispatch:
 
 env:
-  DEV: ${{ (github.ref != '' && github.ref || github.event.inputs.branch) != 'refs/heads/main' && '-dev' || '' }}
+  DEV: ${{ (github.ref != '' && github.ref || github.event.ref) != 'refs/heads/main' && '-dev' || '' }}
 
 jobs:
   build:

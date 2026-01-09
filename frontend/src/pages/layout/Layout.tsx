@@ -1,6 +1,6 @@
 import { useContext, useEffect, useState } from 'react'
 import { Link, Outlet } from 'react-router-dom'
-import { Dialog, Stack, TextField } from '@fluentui/react'
+import { Dialog, Stack, TextField, Checkbox } from '@fluentui/react'
 import { CopyRegular } from '@fluentui/react-icons'
 
 import { CosmosDBStatus } from '../../api'
@@ -18,6 +18,10 @@ const Layout = () => {
   const [hideHistoryLabel, setHideHistoryLabel] = useState<string>('Hide chat history')
   const [showHistoryLabel, setShowHistoryLabel] = useState<string>('Show chat history')
   const [logo, setLogo] = useState('')
+
+  // Level selection state
+  const [levels, setLevels] = useState<{ L1: boolean; L2: boolean; L3: boolean }>({ L1: true, L2: false, L3: false })
+
   const appStateContext = useContext(AppStateContext)
   const ui = appStateContext?.state.frontendSettings?.ui
 
@@ -40,11 +44,62 @@ const Layout = () => {
     appStateContext?.dispatch({ type: 'TOGGLE_CHAT_HISTORY' })
   }
 
+  const handleLevelChange = (level: 'L1' | 'L2' | 'L3') => {
+    // Cascading selection:
+    // L1 -> L1 only
+    // L2 -> L1 + L2
+    // L3 -> L1 + L2 + L3
+    // If already selected, clicking again keeps the cascading constraint (no partial deselects)
+    if (level === 'L1') {
+      setLevels({ L1: true, L2: false, L3: false })
+      try {
+        localStorage.setItem('X-AI-Level', 'L1')
+      } catch {}
+    } else if (level === 'L2') {
+      setLevels({ L1: false, L2: true, L3: false })
+      try {
+        localStorage.setItem('X-AI-Level', 'L2')
+      } catch {}
+    } else {
+      setLevels({ L1: false, L2: false, L3: true })
+      try {
+        localStorage.setItem('X-AI-Level', 'L3')
+      } catch {}
+    }
+  }
+
   useEffect(() => {
     if (!appStateContext?.state.isLoading) {
       setLogo(ui?.logo || Contoso)
     }
   }, [appStateContext?.state.isLoading])
+
+  // Initialize checkbox state from localStorage and keep it in sync
+  useEffect(() => {
+    const syncLevelsFromStorage = () => {
+      try {
+        const stored = localStorage.getItem('X-AI-Level') || 'L1'
+        if (stored === 'L1') setLevels({ L1: true, L2: false, L3: false })
+        else if (stored === 'L2') setLevels({ L1: false, L2: true, L3: false })
+        else if (stored === 'L3') setLevels({ L1: false, L2: false, L3: true })
+        else setLevels({ L1: true, L2: false, L3: false })
+      } catch {
+        setLevels({ L1: true, L2: false, L3: false })
+      }
+    }
+
+    // On first load
+    syncLevelsFromStorage()
+
+    // Listen for changes to storage (if multiple tabs/windows)
+    const onStorage = (e: StorageEvent) => {
+      if (e.key === 'X-AI-Level') {
+        syncLevelsFromStorage()
+      }
+    }
+    window.addEventListener('storage', onStorage)
+    return () => window.removeEventListener('storage', onStorage)
+  }, [])
 
   useEffect(() => {
     if (copyClicked) {
@@ -82,6 +137,27 @@ const Layout = () => {
             <Link to="/" className={styles.headerTitleContainer}>
               <h1 className={styles.headerTitle}>{ui?.title}</h1>
             </Link>
+          </Stack>
+          {/* Level selector group inserted here */}
+          <Stack horizontal verticalAlign="center" className={styles.levelSelectorContainer}>
+            <Checkbox
+              label="L1"
+              checked={levels.L1}
+              onChange={() => handleLevelChange('L1')}
+              aria-label="Select level L1"
+            />
+            <Checkbox
+              label="L2"
+              checked={levels.L2}
+              onChange={() => handleLevelChange('L2')}
+              aria-label="Select level L2"
+            />
+            <Checkbox
+              label="L3"
+              checked={levels.L3}
+              onChange={() => handleLevelChange('L3')}
+              aria-label="Select level L3"
+            />
           </Stack>
           <Stack horizontal verticalAlign="center" horizontalAlign="space-between" className={styles.helpContainer}>
             <Stack horizontal verticalAlign="center" className={styles.helpLinkContainer}>

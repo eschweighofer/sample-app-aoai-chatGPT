@@ -249,6 +249,30 @@ def prepare_model_args(request_body, request_headers):
             }
         ]
 
+    # Inject AI level restriction as a system message based on header
+    # Expected header values: L1 | L2 | L3
+    level_header = (
+        request_headers.get("X-AI-Level")
+        or request_headers.get("x-ai-level")
+        or request_headers.get("X-Ai-Level")
+    )
+
+    def _get_level_system_message(level: str | None) -> str | None:
+        if not level:
+            return None
+        lvl = level.strip().upper()
+        if lvl == "L1":
+            return "You are an L1 Support Engineer Assistant, you must use only documents labeled with ai-l1."
+        if lvl == "L2":
+            return "You are an L2 Support Engineer Assistant, you must use only documents labeled with ai-l2."
+        if lvl == "L3":
+            return "You are an L3 Support Engineer Assistant, you must use only documents labeled with ai-l3."
+        return None
+
+    level_system_message = _get_level_system_message(level_header)
+    if level_system_message:
+        messages.append({"role": "system", "content": level_system_message})
+
     for message in request_messages:
         if message:
             match message["role"]:

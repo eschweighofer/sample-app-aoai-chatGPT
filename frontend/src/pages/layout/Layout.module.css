@@ -21,6 +21,15 @@
   text-decoration: none;
 }
 
+/* New: level selector group spacing */
+.levelSelectorContainer {
+  display: flex;
+  align-items: center;
+  margin-left: 12px;
+  margin-right: 12px;
+  gap: 8px;
+}
+
 .headerTitle {
   font-style: normal;
   font-weight: 600;
@@ -101,12 +110,11 @@
 }
 
 .helpContainer {
-  width: 500px;
+  width: 350px;
   text-align: center;
 }
 
 .helpLinkContainer {
-  width: 50%;
   float: left;
 }
 
@@ -122,5 +130,12 @@
 
   .headerIcon {
     margin-left: 26px;
+  }
+
+  /* Compact spacing on small screens */
+  .levelSelectorContainer {
+    margin-left: 8px;
+    margin-right: 8px;
+    gap: 6px;
   }
 }
